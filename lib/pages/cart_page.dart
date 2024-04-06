@@ -20,12 +20,12 @@ class _CartPageState extends State<CartPage> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        content: const Text("remove this item to your cart"),
+        content: Text("remove this item to your cart"),
         actions: [
           // cancel button
           MaterialButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('cancel'),
+            child: Text('cancel'),
           ),
 
           // yes button
@@ -38,25 +38,25 @@ class _CartPageState extends State<CartPage> {
               // remove from cart
               context.read<Shop>().removeFromCart(product);
             },
-            child: const Text('yes'),
+            child: Text('yes'),
           )
         ],
       ),
     );
   }
 
+
   // user pressed pay button
   void payButtonPressed(BuildContext context) {
-  showDialog(
-      context: context,
-      builder: (context) => const AlertDialog(
-        content: Text(
-          'User wants to pay! Connect this app to your payment backend'
-        ),
-      ),
-  );
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text('User wants to pay! Connect this app to your payment backend'),
+        )
+    );
+    
   }
-
+  
   @override
   Widget build(BuildContext context) {
 
@@ -66,9 +66,8 @@ class _CartPageState extends State<CartPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text(
-          'Cart Page',
-            style: TextStyle(fontSize: 18),
+        title: Text(
+          'Cart Page'
         ),
         elevation: 0,
         centerTitle: true,
@@ -80,10 +79,7 @@ class _CartPageState extends State<CartPage> {
         children: [
           // cart list
           Expanded(
-              child: cart.isEmpty?
-              const Center(
-                  child: Text('Your cart is empty')):
-              ListView.builder(
+              child: ListView.builder(
                 itemCount: cart.length,
                   itemBuilder: (context, index) {
                     // get individual item in cart
@@ -94,7 +90,7 @@ class _CartPageState extends State<CartPage> {
                       title: Text(item.name),
                       subtitle: Text(item.price.toStringAsFixed(2)),
                       trailing: IconButton(
-                        icon: const Icon(Icons.remove),
+                        icon: Icon(Icons.remove),
                         onPressed: () => removeitemFromCart(context, item),
                       ),
 
@@ -104,11 +100,8 @@ class _CartPageState extends State<CartPage> {
           ),
 
           // pay button
-          Padding(
-            padding: const EdgeInsets.all(50.0),
-            child: MyButton(
-              onTap: () => payButtonPressed(context), child: const Text("PAY NOW"),
-            ),
+          MyButton(
+            onTap: () => payButtonPressed(context), child: Text("PAY NOW"),
           ),
         ],
       ),
