@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: IntroPage(),
+      home: const IntroPage(),
       theme: LightMode,
       routes: {
         '/intro_page':(context) => const IntroPage(),
